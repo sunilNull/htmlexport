@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "htmlexport"
+dynamic = ["version"]
+description = "Convert HTML to Word (.docx), Excel (.xlsx) and PDF with one consistent API."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Sunil Shrimali" }]
+keywords = ["html", "docx", "xlsx", "pdf", "word", "excel", "export", "converter", "report"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Office/Business",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Typing :: Typed",
+]
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "soupsieve>=2.5",
+    "tinycss2>=1.4",
+]
+
+[project.optional-dependencies]
+docx = ["python-docx>=1.1"]
+xlsx = ["XlsxWriter>=3.2"]
+pdf = ["weasyprint>=63"]
+all = ["python-docx>=1.1", "XlsxWriter>=3.2", "weasyprint>=63"]
+
+[dependency-groups]
+dev = ["pytest>=8", "openpyxl>=3.1", "pypdf>=4", "ruff>=0.6", "mypy>=1.10", "build>=1.2", "twine>=5"]
+
+[project.scripts]
+htmlexport = "htmlexport.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/sunilNull/htmlexport"
+Issues = "https://github.com/sunilNull/htmlexport/issues"
+Changelog = "https://github.com/sunilNull/htmlexport/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/htmlexport/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/htmlexport"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
