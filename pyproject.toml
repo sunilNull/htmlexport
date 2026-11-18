@@ -48,7 +48,7 @@ htmlexport = "htmlexport.cli:main"
 [project.urls]
 Homepage = "https://github.com/sunilNull/htmlexport"
 Issues = "https://github.com/sunilNull/htmlexport/issues"
-Changelog = "https://github.com/sunilNull/htmlexport/blob/main/CHANGELOG.md"
+Changelog = "https://github.com/sunilNull/htmlexport/blob/master/CHANGELOG.md"
 
 [tool.hatch.version]
 path = "src/htmlexport/__init__.py"
